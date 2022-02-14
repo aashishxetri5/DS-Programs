@@ -2,6 +2,15 @@
 
 int i;
 
+/*
+a.
+Degree of membership = 1                if age<=15
+Degree of membership = (35-age)/20      if age>15 and age<=35
+Degree of membership = 0                if age>35
+
+
+*/
+
 void printQ4aFuzzySet(int age[], char names[][15]){
 
     printf("Question (4a): \n");
@@ -22,6 +31,15 @@ void printQ4aFuzzySet(int age[], char names[][15]){
     printf("}");
     
 }
+
+
+/*
+b.
+Degree of membership = 1                if age<=20
+Degree of membership = (30-age)/10      if age>20 and age<=30
+Degree of membership = 0                if age>30
+
+*/
 
 void printQ4bFuzzySet(int age[], char names[][15]){
 

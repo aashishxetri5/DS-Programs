@@ -1,5 +1,10 @@
 /*
+Write a program that takes name and age of a 5 persons as an input and 
+gives the degree of membership of the person as its output according to 
+following membership functions.
 
+Perform set operations according to rules of fuzzy sets, on these 
+two sets.
 */
 
 #include <stdio.h>
