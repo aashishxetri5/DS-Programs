@@ -104,8 +104,7 @@ void getUnion(int setA[], int setB[]) {
     printf("}");
 }
 
-void getIntersection(int setA[], int setB[]){
-    
+void getIntersection(int setA[], int setB[]) {
     printf("\nIntersection: \n{ ");
     for(i = 0; i < sizeB; i++){
         found = 0;
@@ -141,7 +140,8 @@ void getDifference(int setA[], int setB[], int sizeA, int sizeB){
 }
 
 void getSymDifference(int setA[], int setB[]) {
-    int newSetA[sizeA], newSetB[sizeB];
+    int newSetA[sizeA], newSetB[sizeB], indexNA = 0, indexNB = 0;
+    //A-B
     for(i = 0; i < sizeA; i++) {
         found = 0;
         for(j = 0; j<sizeB; j++) {
@@ -151,9 +151,12 @@ void getSymDifference(int setA[], int setB[]) {
             }
         }
         if(found == 0) {
-            newSetA[i] = setA[i];
+            newSetA[indexNA] = setA[i];
+            indexNA++;
         }
     }
+
+    // B-A
     for(i = 0; i < sizeB; i++) {
         found = 0;
         for(j = 0; j<sizeA; j++) {
@@ -163,12 +166,27 @@ void getSymDifference(int setA[], int setB[]) {
             }
         }
         if(found == 0) {
-            newSetB[i] = setB[i];
+            newSetB[indexNB] = setB[i];
+            indexNB++;
         }
     }
+    //(A-B)U(B-A)
     printf("\nSymmetric Difference: \n{ ");
-    for(i = 0; i < sizeA; i++){
-        printf("%d ", newSetA[i]);
+    for(j = 0; j < indexNA; j++){
+        printf("%d ", newSetA[j]);
+    }
+
+    for(i = 0; i < indexNB; i++){
+        found = 0;
+        for(j = 0; j < indexNA; j++){
+            if(newSetB[i] == newSetA[j]){
+                found = 1;
+                break;
+            }
+        }
+        if(found == 0) {
+            printf("%d ", newSetB[i]);
+        }
     }
     printf("}");
 }
