@@ -6,7 +6,6 @@ its output.
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 void getUnion(int [], int []);
 void getIntersection(int [], int []);
@@ -57,8 +56,10 @@ int main() {
 
     switch (choice) {
     case 1:
+        printf("\nUnion: \n{ ");
         getUnion(setA, setB);
         break;
+        printf("}");
     case 2:
         getIntersection(setA, setB);
         break;
@@ -84,7 +85,6 @@ int main() {
 
 void getUnion(int setA[], int setB[]) {
 
-    printf("\nUnion: \n{ ");
     for(i = 0; i < sizeA; i++){
         printf("%d ", setA[i]);
     }
@@ -101,7 +101,6 @@ void getUnion(int setA[], int setB[]) {
             printf("%d ", setB[i]);
         }
     }
-    printf("}");
 }
 
 void getIntersection(int setA[], int setB[]) {
@@ -172,21 +171,27 @@ void getSymDifference(int setA[], int setB[]) {
     }
     //(A-B)U(B-A)
     printf("\nSymmetric Difference: \n{ ");
-    for(j = 0; j < indexNA; j++){
-        printf("%d ", newSetA[j]);
-    }
 
-    for(i = 0; i < indexNB; i++){
-        found = 0;
-        for(j = 0; j < indexNA; j++){
-            if(newSetB[i] == newSetA[j]){
-                found = 1;
-                break;
-            }
-        }
-        if(found == 0) {
-            printf("%d ", newSetB[i]);
-        }
-    }
+    /* ? Long method.
+    // for(j = 0; j < indexNA; j++){
+    //     printf("%d ", newSetA[j]);
+    // }
+    // for(i = 0; i < indexNB; i++){
+    //     found = 0;
+    //     for(j = 0; j < indexNA; j++){
+    //         if(newSetB[i] == newSetA[j]){
+    //             found = 1;
+    //             break;
+    //         }
+    //     }
+    //     if(found == 0) {
+    //         printf("%d ", newSetB[i]);
+    //     }
+    // }
+    */
+
+    sizeA = indexNA;
+    sizeB = indexNB;
+    getUnion(newSetA, newSetB);
     printf("}");
 }
