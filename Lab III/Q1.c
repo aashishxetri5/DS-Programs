@@ -23,23 +23,30 @@ void alterValues(int *p, int *q, int *r, int i) {
 
 }
 
+char getTorF(int val) {
+    if(val) {
+        return 'T';
+    }
+    return 'F';
+}
+
 void Q1a(int p, int q, int r) {
     int i, s, t;
     printf("\np ^ ~q v r\t");
     printf("~p v r\t");
     printf("s -> t\n");
-
+    printf("--------------------------------\n");
     for(i = 0; i < 8; i++) {
 
         s = getFirstExprRes(p, q, r);
         t = getSecExprRes(p, r);
-        printf("%d\t\t", s);
-        printf("%d\t", t);
+        printf("%c\t\t", getTorF(s));
+        printf("%c\t", getTorF(t));
         
         if(s && !t) {
-            printf("%d\n", 0);
+            printf("%c\n", getTorF(0));
         } else {
-            printf("%d\n", 1);
+            printf("%c\n", getTorF(1));
         }
 
         alterValues(&p, &q, &r, i);
@@ -53,18 +60,19 @@ void Q1b(int p, int q, int r) {
     printf("\np ^ ~q v r\t");
     printf("~p v r\t");
     printf("s <-> t\n");
+    printf("-----------------------------------\n");
 
     for(i = 0; i < 8; i++) {
 
         s = getFirstExprRes(p, q, r);
         t = getSecExprRes(p, r);
-        printf("%d\t\t", s);
-        printf("%d\t", t);
+        printf("%c\t\t", getTorF(s));
+        printf("%c\t", getTorF(t));
         
         if(s && t || !s && !t) {
-            printf("%d\n", 1);
+            printf("%c\n", getTorF(1));
         } else {
-            printf("%d\n", 0);
+            printf("%c\n", getTorF(0));
         }
 
         alterValues(&p, &q, &r, i);
