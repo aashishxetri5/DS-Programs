@@ -1,9 +1,8 @@
 #include <stdio.h>
 
-
 int getFirstExprRes(int p, int q, int r) {
 
-    return ((p && !q) || r);
+    return (p && !q || r);
 }
 
 int getSecExprRes(int p, int r) {
@@ -11,13 +10,9 @@ int getSecExprRes(int p, int r) {
 }
 
 void alterValues(int *p, int *q, int *r, int i) {
-    if((i+1)%4 == 0) {
-        *p = !(*p);
-    }
+    (i+1)%4 == 0 ? *p = !(*p) : 0;
 
-    if((i+1)%2 == 0) {
-        *q = !(*q);
-    }
+    (i+1)%2 == 0 ? *q = !(*q) : 0;
     
     *r = !(*r);
 
@@ -32,14 +27,17 @@ char getTorF(int val) {
 
 void Q1a(int p, int q, int r) {
     int i, s, t;
-    printf("\np ^ ~q v r\t");
+    printf("\np\tq\tr\tp ^ ~q v r\t");
     printf("~p v r\t");
     printf("s -> t\n");
-    printf("--------------------------------\n");
+    printf("----------------------------------------------------\n");
     for(i = 0; i < 8; i++) {
 
         s = getFirstExprRes(p, q, r);
         t = getSecExprRes(p, r);
+        printf("%c\t", getTorF(p));
+        printf("%c\t", getTorF(q));
+        printf("%c\t", getTorF(r));
         printf("%c\t\t", getTorF(s));
         printf("%c\t", getTorF(t));
         
@@ -57,19 +55,24 @@ void Q1a(int p, int q, int r) {
 
 void Q1b(int p, int q, int r) {
     int i, s, t;
-    printf("\np ^ ~q v r\t");
+    printf("\np\tq\tr\tp ^ ~q v r\t");
     printf("~p v r\t");
     printf("s <-> t\n");
-    printf("-----------------------------------\n");
+    printf("-------------------------------------------------------\n");
 
     for(i = 0; i < 8; i++) {
 
-        s = getFirstExprRes(p, q, r);
-        t = getSecExprRes(p, r);
+        s = getFirstExprRes(p, !q, r);
+        t = getSecExprRes(!p, r);
+
+        printf("%c\t", getTorF(p));
+        printf("%c\t", getTorF(q));
+        printf("%c\t", getTorF(r));
+
         printf("%c\t\t", getTorF(s));
         printf("%c\t", getTorF(t));
         
-        if(s && t || !s && !t) {
+        if((s && t) || (!s && !t)) {
             printf("%c\n", getTorF(1));
         } else {
             printf("%c\n", getTorF(0));
@@ -82,7 +85,7 @@ void Q1b(int p, int q, int r) {
 
 int main() {
 
-    int p = 0, q = 0, r = 0;
+    int p = 1, q = 1, r = 1;
     printf("\nQ.1(a)\n");
     Q1a(p, q, r);
 
