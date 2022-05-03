@@ -6,9 +6,8 @@ Write recursive code to calculate a^n.
 int calculateExponent(int base, int exp) {
     if (exp == 0) {
         return 1;
-    } else {
-        return base*calculateExponent(base, exp-1);
     }
+    return base*calculateExponent(base, exp-1);
 }
 
 

@@ -33,11 +33,14 @@ int ExtendedEuclidean(int a, int b, int *x, int *y) {
 }
 
 int main() {
-    int a = 555, b = 255, x, y;
-    printf("Implementing Euclidean Algorith: \n");
+    int a, b, x, y;
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+
+    printf("Implementing Euclidean Algorithm: \n");
     printf("%d", Euclidean(a, b));
 
     printf("\nImplementing Extendted Euclidean Algorithm: \n");
-    printf("%d", ExtendedEuclidean(5562, 1238, &x, &y));
+    printf("%d", ExtendedEuclidean(a, b, &x, &y));
 
 }
