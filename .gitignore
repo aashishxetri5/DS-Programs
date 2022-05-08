@@ -53,3 +53,5 @@ dkms.conf
 
 # Files which contains the word test in between
 *test*
+
+.vscode
