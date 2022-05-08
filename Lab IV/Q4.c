@@ -6,7 +6,7 @@
 
 //Fills the array with numbers inserted by the user.
 void fillArray(int *array) {
-    int i, num;
+    int i;
     for(i = 0; i < 10; i++) {
         printf("Array[%d]: ", i);
         scanf("%d", (array+i) );

@@ -1,15 +1,15 @@
 /**
  * Find a number in an array using binary search.
  */
-
+    
 #include <stdio.h>
 
-void searchForNumber(int *array, int numToBeSearched, int size) {
+int searchForNumber(int *array, int numToBeSearched, int size) {
     
-    int low = 0, high = size-1, flag = 0;
+    int low = 0, high = size-1;
     int mid, i;
 
-    for(i = 0; i < 10; i++) {
+    for(i = 0; i < size; i++) {
         printf("%d ", *(array+i));
     }
 
@@ -17,8 +17,8 @@ void searchForNumber(int *array, int numToBeSearched, int size) {
         mid = low + (high - low)/2;
 
         if ( *(array+mid) == numToBeSearched) {
-            flag = 1;
-            break;
+            return mid;
+            // break;
         }
 
         if ( *(array+mid) > numToBeSearched) {
@@ -28,18 +28,14 @@ void searchForNumber(int *array, int numToBeSearched, int size) {
         }
     }
 
-    if( flag ) {
-        printf("\n'%d' found at index %d", numToBeSearched, mid) ;
-    } else {
-        printf("\n'%d' not found!", numToBeSearched) ;
-    }
+    return -1;
     
 
 }
 
-void descendingSort(int *array) {
+void descendingSort(int *array, int size) {
     int i, j, temp;
-    for(i = 0; i < 10; i++) {
+    for(i = 0; i < size; i++) {
         temp = *(array+i);
         j = i-1;
         while(j >=0 && *(array+j) < temp) {
@@ -52,14 +48,20 @@ void descendingSort(int *array) {
 
 int main() {
 
-    int array[] = {23,46,7,-54,5,67,2,1,75,776}, number;
+    int array[] = {23, 46, 7, -54, 2, 1, 75, 0}, number;
 
     printf("Enter the number to be searched: ");
     scanf("%d", &number);
 
-    descendingSort(&array[0]);
+    descendingSort(&array[0], 8);
 
-    searchForNumber(&array[0], number, sizeof array/sizeof array[0]);
+    int result = searchForNumber(&array[0], number, sizeof array/sizeof array[0]);
+
+    if( result != -1 ) {
+        printf("\n'%d' found at index %d", number, result) ;
+    } else {
+        printf("\n'%d' not found!", number) ;
+    }
 
 
 
