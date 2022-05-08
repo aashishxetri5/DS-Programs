@@ -62,8 +62,8 @@ void Q1b(int p, int q, int r) {
 
     for(i = 0; i < 8; i++) {
 
-        s = getFirstExprRes(p, !q, r);
-        t = getSecExprRes(!p, r);
+        s = getFirstExprRes(p, q, r);
+        t = getSecExprRes(p, r);
 
         printf("%c\t", getTorF(p));
         printf("%c\t", getTorF(q));
@@ -73,9 +73,9 @@ void Q1b(int p, int q, int r) {
         printf("%c\t", getTorF(t));
         
         if((s && t) || (!s && !t)) {
-            printf("%c\n", getTorF(1));
+            printf("%c\n", 'T');
         } else {
-            printf("%c\n", getTorF(0));
+            printf("%c\n", 'F');
         }
 
         alterValues(&p, &q, &r, i);

@@ -17,7 +17,7 @@ int main() {
      * ~p => Therefore, you aren't a hound dog.
      */
 
-    int p = 1, q = 1, s, i;
+    int p = 0, q = 0, s, i, flag=0;
 
     printf("p\tq\tp->q\t~q\t~p\n");
     printf("------------------------------------\n");
@@ -36,9 +36,19 @@ int main() {
         printf("%c\t", getTorF(!q));
         printf("%c\n", getTorF(!p));
 
+        if( (s && !q) && !p) {
+            flag = 1;
+        }
+
         (i+1)%2 == 0 ? p = !p : 0;
 
         q = !q;
+    }
+
+    if(flag) {
+        printf("\nStatement Verified!!");
+    } else {
+        printf("\nStatement not Verified!!");
     }
 
     return 0;
